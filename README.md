@@ -1,5 +1,5 @@
 # RHCSA（EX200） 擬真試題解析
-考古題系列：RedHat RHCSA（EX200）
+考古題系列（RedHat）：RHCSA（EX200）
 
 ---
 
