@@ -69,7 +69,7 @@ usermod -s "/sbin/nologin" wayne
 
 #### Step 4. 設定使用者密碼
 
-逐一為使用者設定密碼
+逐一為使用者設定密碼，指令如下：
 
 ```shell
 echo "redhat" | passwd --stdin nasun
