@@ -6,7 +6,7 @@
 
 ## Description
 
-Create a collaborative directory `/home/rhcsa` with the following characteristics:
+創建一個資料夾：「`/home/rhcsa`」，並依照以下條件設置權限：
 
 - Group ownership of `/home/rhcsa` is manager.
 - The directory should be readable, writable, and accessible to members of manager and to the user owner, but not to any other user (It is understood that root has access to all files and directories on the system).
@@ -47,7 +47,7 @@ chmod 2770 /home/rhcsa
 
 操作截圖如下：
 
-![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q05_chmod_rhcsa.png?raw=true)
+![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q06_chmod_rhcsa.png?raw=true)
 
 ---
 
