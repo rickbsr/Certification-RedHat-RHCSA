@@ -6,7 +6,7 @@
 
 ## Description
 
-Create the following users, groups, and group memberships:
+請依照以下條件創建「使用者」、「群組」，並設置相關權限：
 
 - A group named manager.
 - A user nasun who belongs to manager as a secondary group.
