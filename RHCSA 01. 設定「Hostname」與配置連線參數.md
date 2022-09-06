@@ -44,13 +44,13 @@ hostnamectl set-hostname exam.example.com
 nmcli con show
 ```
 
-顯示結果如下：
+畫面截圖如下：
 
 ![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q01_con_show.png?raw=true)
 
-根據回傳內容，我們可以得知當前「Connection」的「Name」是「`Wired connection 1`」。
+根據顯示內容，我們可以得知當前「Connection」的「Name」是「`Wired connection 1`」。
 
-有了連線名稱以後，接著就是依照題目要求逐一設置網路連線參數，指令如下：
+接著，根據「連線名稱」並依題目要求逐一設置網路連線參數，指令如下：
 
 ```shell
 # 修改「IP address」& 「Netmask」
@@ -63,15 +63,19 @@ nmcli con mod "Wired connection 1" ipv4.gateway 172.25.250.10
 nmcli con mod "Wired connection 1" ipv4.dns 172.25.250.10
 ```
 
-###### 說明：上述指令中，「`ipv4.addresses`」的配置參數是「IP」位址再加上「`/24`」；「/」後的數值代表「子網路遮罩」的設定值；而「24」的意思即「`255.255.255.0`」。
+###### 指令說明：
 
-在配置完所有題目指定的連線參數以後，其實還有兩個設定須要配置，其一是將「`ipv4.method`」改成「`manual`」；然後是將「`autoconnect`」設定為「`yes`」；如此一來，該連線設定在重啟時才會生效，指令如下：
+> 上述配置指令中，「`ipv4.addresses`」的配置值是「`172.25.250.10/24`」；「`/`」前是「IP Address」，而「`/`」後的數值為「子網路遮罩」的「設定值」；而「`24`」的意思即「`255.255.255.0`」。
+
+在配置完所有題目指定的連線參數以後，其實還有兩個設定須要配置。
+
+第一個是「`ipv4.method`」，須將之改為「`manual`」；然後是「`autoconnect`」，須設為「`yes`」；如此一來，該連線設定在重啟時才會生效，指令如下：
 
 ```shell
 # 修改「Method」
 nmcli con mod "Wired connection 1" ipv4.method manual
 
-# 修改「Gateway」
+# 修改「Auto-Connect」
 nmcli con mod "Wired connection 1" autoconnect yes
 ```
 
