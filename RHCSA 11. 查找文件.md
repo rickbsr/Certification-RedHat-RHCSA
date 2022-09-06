@@ -1,4 +1,4 @@
-# RHCSA 10. 配置使用者帳戶
+# RHCSA 11. 查找文件
 
 ![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/redhat-rhcsa.png?raw=true)
 

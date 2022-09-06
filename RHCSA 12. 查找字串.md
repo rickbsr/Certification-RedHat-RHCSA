@@ -1,4 +1,4 @@
-# RHCSA 10. 配置使用者帳戶
+# RHCSA 12. 查找字串.md
 
 ![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/redhat-rhcsa.png?raw=true)
 

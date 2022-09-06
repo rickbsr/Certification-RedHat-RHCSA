@@ -1,4 +1,4 @@
-# RHCSA 10. 配置使用者帳戶
+# RHCSA 14. 設置「root」密碼
 
 ![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/redhat-rhcsa.png?raw=true)
 
