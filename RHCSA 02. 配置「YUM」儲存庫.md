@@ -12,6 +12,7 @@
 - `http://content.example.com/rhel8.2/x86_64/dvd/AppStream`
 
 ###### 提示：將配置內容存放在檔案「`/etc/yum.repos.d/exam.repo`」之中。
+
 ###### 提示：不須確認「GPG signatures」。
 
 ---
@@ -49,7 +50,7 @@ enabled=1
 gpgcheck=0
 ```
 
-###### 說明：儲存庫的配置設定中，「name」的「值」可自行定義，該內容僅供辨識用。
+上述「`exam.repo`」的配置內容中，「name」的「值」可自行定義，該內容僅供辨識用。
 
 在檔案編輯完成以後，建議使用指令「`cat`」確認，操作截圖如下：
 
@@ -69,4 +70,4 @@ yum repolist all
 
 ---
 
-###### tags: `RHCSA` `RedHat` `Linux`
+###### tags: `rhcsa` `redhat` `linux`
