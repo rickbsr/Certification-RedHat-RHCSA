@@ -103,4 +103,4 @@ nmcli con up "Wired connection 1"
 
 ---
 
-###### tags: `RHCSA` `RedHat` `Linux`
+###### tags: `rhcsa` `redhat` `linux`
