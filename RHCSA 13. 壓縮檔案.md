@@ -34,4 +34,4 @@ tar -zcvPf /root/backup.tar.gz /usr/local/
 
 ---
 
-###### tags: `RHCSA` `RedHat` `Linux`
+###### tags: `rhcsa` `redhat` `linux`
