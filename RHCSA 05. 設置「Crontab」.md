@@ -26,12 +26,10 @@ crontab -u roger -e
 */5 7 * * * /bin/echo "Good Morning" 
 ```
 
-###### 說明：在「crontab」中，其五個星號依序代表「分、時、日、月、週」；上述內容中的「`*/5`」代表每「5」分鐘，而「7」代表上午七點。
-
-操作截圖如下：
+上述「`crontab`」配置內容中，前五個參數依序分別是「分、時、日、月、週」，而當中「`*/5`」代表每「5」分鐘，而「7」代表早上七點，操作截圖如下：
 
 ![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q05_crontab.png?raw=true)
 
 ---
 
-###### tags: `RHCSA` `RedHat` `Linux`
+###### tags: `rhcsa` `redhat` `linux`

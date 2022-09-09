@@ -11,7 +11,7 @@
 - 「Web」服務器要能夠提供「`/var/www/html/file.html`」中的內容。
 - 「Web」服務器要能夠在「82 port」上提供內容，並在系統啟動時，自動啟動。
 
-###### 提醒：不要刪除或以其他方式改動現有的文件內容。
+###### 提示：不要刪除或以其他方式改動現有的文件內容。
 
 ---
 
@@ -51,13 +51,15 @@ systemctl restart httpd.service
 semanage port -a -t http_port_t -p tcp 82
 ```
 
-###### 說明：「`semanage port`」是「`semanage`」用來管理網路設定的子命令，「a」代表「add」，「t」代表「Type」，後面須為「類型」，此處的需求是在「`http_port_t`」上新增一個預設端口，故「t」後面就接「`http_port_t`」，而「`p`」是代表「port」，後面接的是「Protocol」，此處的協議類型是「TCP」；最後在加上「端口號」。
+指令「`semanage port`」是「`semanage`」用來管理網路設定的子命令。
 
-在添加端口前後，可以用指令「`semanage port -l`」來確認是否有成功添加，整個操作截圖如下：
+在指令中，參數「a」是「add」的意思，意即「新增」；而參數「t」則是「Type」，意即「類別」，所以在其後必須接上類型，以本題來說，要新增的端口類別是「`http_port_t`」；而後是「p」，意即「port」，而後面接的是「Protocol」，本題使用的協議類型是「TCP」；最後在加上端口號「82」。
+
+另外，在添加端口前後，可以用指令「`semanage port -l`」來確認是否有成功添加，整個操作截圖如下：
 
 ![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q03_semanage_port.png?raw=true)
 
-完成後，就可以重啟「Http」，指令如下：
+完成後，就可以重啟「Httpd」，指令如下：
 
 ```shell
 systemctl restart httpd.service
@@ -89,9 +91,11 @@ curl http://127.0.0.1:82/file.html
 semanage fcontext -m -t httpd_sys_content_t '/var/www/html/file\.html'
 ```
 
-###### 說明：安全性本文的組成可以分為「Identify（身份識別）」、「role（角色）」以及「type（類型）」；其之間用「:」隔開。
+安全性本文的組成可以分為「Identify（身份識別）」、「role（角色）」以及「type（類型）」；其之間用「`:`」隔開。
 
-###### 說明：指令「semanage fcontext」可以用來修改「SE Linux」的「安全性本文」，而「m」代表「modify」，用於「修改」，如果該檔案的並沒有定義，則可以用「a」，代表「add」，意即「新增」；另外，「t」代表「type」。
+而指令「semanage fcontext」就是與「SE Linux」的「安全性本文」操作有關的指令，其可藉由參數「m」來修改「安全性本文」的內容，「m」代表「modify」；附帶一提，若碰到尚未定義的「檔案」，此時就無法使用「m」，要改用參數「a」，即「新增」的意思。
+
+最後是「t」，代表「type」的意思，因此，其後面須接「類型」。
 
 修改完後，記得套用，指令如下：
 
@@ -99,7 +103,9 @@ semanage fcontext -m -t httpd_sys_content_t '/var/www/html/file\.html'
 restorecon -Rv /var/www/html/
 ```
 
-當一切操作完成後，就可以用「`curl`」正確地讀取到「`/var/www/html/file.html`」的內容了，整體操作截圖如下：
+上述中，指令「restorecon」的「R」是「遞迴」的意思，「v」則是「可見的」。
+
+若當一切操作完成後，我們就可以用「`curl`」正確地讀取到「`/var/www/html/file.html`」的內容了，整體操作截圖如下：
 
 ![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q03_semanage_fcontext_m.png?raw=true)
 
@@ -131,4 +137,4 @@ firewall-cmd --zone=public --list-all | grep "82" -C 3
 
 ---
 
-###### tags: `RHCSA` `RedHat` `Linux`
+###### tags: `rhcsa` `redhat` `linux`

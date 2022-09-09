@@ -24,7 +24,7 @@ server classroom.example.com iburst
 
 ![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q07_chrony_content.png?raw=true)
 
-使生效，指令如下：
+為了使之生效，「重啟」的指令如下：
 
 ```
 systemctl restart chronyd
@@ -36,4 +36,4 @@ systemctl restart chronyd
 
 ---
 
-###### tags: `RHCSA` `RedHat` `Linux`
+###### tags: `rhcsa` `redhat` `linux`

@@ -8,11 +8,11 @@
 
 請依照以下條件創建「使用者」、「群組」，並設置相關權限：
 
-- A group named manager.
-- A user nasun who belongs to manager as a secondary group.
-- A user roger who also belongs to manager as a secondary group.
-- A user wayne who does not have access to an interactive shell on the system, and who is not a member of manager.
-- Nasun, roger, and wayne should all have the password of `redhat`.
+- 建立一名稱為「manager」的群組。
+- 使用者「nasun」為「manager」的成員，該群組是「nasun」的次要群組。
+- 使用者「roger」同樣為「manager」的成員，該群組同樣是「roger」的次要群組。
+- 使用者「wayne」沒有權限訪問系統上的「Shell」，此外，「wayne」也非「manager」的成員。
+- 使用者「nasun」、「roger」和「wayne」的「使用者密碼」皆設為「`redhat`」。
 
 ---
 
@@ -48,20 +48,26 @@ usermod -aG	manager nasun
 usermod -aG	manager roger
 ```
 
-###### 說明：在「`usermod`」指令的參數中，小寫的參數「g」代表修改使用者的「主要群組」，而大寫的參數「Ｇ」則是代表修改使用者的「次要群組」；此外，在「Linux」中，使用者可以同時屬於多個「次要群組」，因此，若是要「新增」次要群組，而非「修改」，可以使用參數「a」，其意思則是代表「新增」，通常搭配「Ｇ」使用，意即「新增次要群組」。
+在指令「`usermod`」的中，修改「群組」的參數分別是大寫的「Ｇ」，與小寫的「g」；前者是修改的是「主要群組」，而後者則是「次要群組」。
+
+此外，在「Linux」中，由於使者用可以擁有多個「次要群組」，因此，倘若用戶的需求是「新增」一個「次要群組」，而非異動原本既有的群組，那麼，那就使用參數「aG」；「a」是新增的意思，常搭配參數「Ｇ」使用，意即「新增次要群組」。
 
 操作截圖如下：
 
 ![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q04_group_manager.png?raw=true)
 
-此外，題目還要求將「wayne」設置成「無法登入」，其意思也就是將該用戶，也就是「wayne」，加入「`/sbin/nologin`」檔案中，指令如下：
+此外，題目還要求將「wayne」設置成無權限操作「Shell」。
+
+其作法就是將「wayne」，加入「`/sbin/nologin`」檔案中，指令如下：
 
 ```shell
 # wayne does not have access to an interactive shell on the system
 usermod -s "/sbin/nologin" wayne
 ```
 
-###### 說明：在「`usermod`」中，參數「s」代表與實際檔案有關；而「`/sbin/nologin`」則是個實際檔案，當使用者被加入這個檔案中，就代表該使用者「無法登入」。
+在指令「`usermod`」中，參數「s」通常是與實際存在的「檔案」有關；而「`/sbin/nologin`」就是個實際存在的檔案，當使用者被加入這個檔案中，就代表該使用者「無法登入」。
+
+代表與實際檔案有關；而「`/sbin/nologin`」則是個實際檔案，當使用者被加入這個檔案中，就代表該使用者「無法登入」。
 
 操作截圖如下：
 
@@ -83,4 +89,4 @@ echo "redhat" | passwd --stdin wayne
 
 ---
 
-###### tags: `RHCSA` `RedHat` `Linux`
+###### tags: `rhcsa` `redhat` `linux`
