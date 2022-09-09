@@ -6,75 +6,38 @@
 
 ## Description
 
-
+將使用者「john」所擁有的文件都複製一份並放到名稱為「`/root/backup`」的目錄。
 
 ---
 
 ## Answer
 
-#### Step 1. 建立「Group」
-
-依題目敘述，建立一個名為「manager」的「群組」，指令如下：
+#### Step 1. 建立「資料夾」
 
 ```shell
-groupadd manager
+mkdir /root/backup
 ```
 
-#### Step 2. 建立「User」
-
-同樣依題目敘述，依序建立三個使用者帳戶，分別為「nasun」、「roger」和「wayne」，指令如下：
+#### Step 2. 查找文件並複製到指定目錄
 
 ```shell
-useradd nasun
-useradd roger
-useradd wayne
+find / -user john -type f -exec cp -a {} /root/backup \;
 ```
 
-#### Step 3. 設定使用者的權限
+查找的指令是「`find`」，後面接的是要尋找的目錄；而「user」意思是指「檔案的擁有者」，所以其後必須接「使用者」；此外，若要找查找的檔案目錄是「不屬於任何人」的，可以使用參數「nouser」。
 
-在「Linux」系統中，「使用者」可以屬於多個，而且可以分為「主要群組」和「次要群組」兩種。
+然後「type」是指要尋找是「檔案目錄類」型，後面的「f」，代表「files」，意即「檔案」。
 
-而題目要求我們要將「manager」群組新增為「nasun」和「roger」的「次要群組」，指令如下：
+接著是「exec」，是「執行」的意思，後面接「要被執行的指令」，而「`{}`」則代表輸入的內容，也就是前面「`find`」所找到的內容。
 
-```shell
-# nasun & roger boths belongs to manager as a secondary group
-usermod -aG	manager nasun
-usermod -aG	manager roger
-```
+另外，上述指令中的參數「a」是指令「`cp`」的參數，等同於複合參數「dpR」，意即保留「鏈接」與「文件屬性」，並複製目錄下的所有內容。
 
-###### 說明：在「`usermod`」指令的參數中，小寫的參數「g」代表修改使用者的「主要群組」，而大寫的參數「Ｇ」則是代表修改使用者的「次要群組」；此外，在「Linux」中，使用者可以同時屬於多個「次要群組」，因此，若是要「新增」次要群組，而非「修改」，可以使用參數「a」，其意思則是代表「新增」，通常搭配「Ｇ」使用，意即「新增次要群組」。
+而指令最後的「`\;`」則是代表指令結束。
 
-操作截圖如下：
+當完成後，我們可以藉由「`ls`」確認一下「`/root/backup`」目錄，操作截圖如下：
 
-![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q04_group_manager.png?raw=true)
-
-此外，題目還要求將「wayne」設置成「無法登入」，其意思也就是將該用戶，也就是「wayne」，加入「`/sbin/nologin`」檔案中，指令如下：
-
-```shell
-# wayne does not have access to an interactive shell on the system
-usermod -s "/sbin/nologin" wayne
-```
-
-###### 說明：在「`usermod`」中，參數「s」代表與實際檔案有關；而「`/sbin/nologin`」則是個實際檔案，當使用者被加入這個檔案中，就代表該使用者「無法登入」。
-
-操作截圖如下：
-
-![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q04_nologin.png?raw=true)
-
-#### Step 4. 設定使用者密碼
-
-逐一為使用者設定密碼，指令如下：
-
-```shell
-echo "redhat" | passwd --stdin nasun
-echo "redhat" | passwd --stdin roger
-echo "redhat" | passwd --stdin wayne
-```
-
-操作截圖如下：
-
-![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q04_ch_pwd.png?raw=true)
+![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q11_find.png?raw=true)
 
 ---
 
-###### tags: `RHCSA` `RedHat` `Linux`
+###### tags: `rhcsa` `redhat` `linux`
