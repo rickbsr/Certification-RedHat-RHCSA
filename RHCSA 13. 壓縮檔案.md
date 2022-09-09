@@ -6,74 +6,31 @@
 
 ## Description
 
-
+將「`/usr/local/`」的內容打包，並以「`gz`」的方式壓縮，其檔名為「`/root/backup.tar.gz`」。
 
 ---
 
 ## Answer
 
-#### Step 1. 建立「Group」
+#### Step 1. 依題目需求將目標目錄壓縮
 
-依題目敘述，建立一個名為「manager」的「群組」，指令如下：
-
-```shell
-groupadd manager
-```
-
-#### Step 2. 建立「User」
-
-同樣依題目敘述，依序建立三個使用者帳戶，分別為「nasun」、「roger」和「wayne」，指令如下：
+指令如下：
 
 ```shell
-useradd nasun
-useradd roger
-useradd wayne
+tar -zcvPf /root/backup.tar.gz /usr/local/
 ```
 
-#### Step 3. 設定使用者的權限
+在指令「`tar`」中，「c」是「create」的意思，也就是「打包」；而「v」則是「verbose」的意思，代表要顯示正在處理的訊息，其實就是顯示「Log」。
 
-在「Linux」系統中，「使用者」可以屬於多個，而且可以分為「主要群組」和「次要群組」兩種。
+另外題目有指令以「`gz`」格式壓縮，其中「z」就是代表以「`gz`」格式壓縮；其它常見壓縮格式還有「`bz2`」，參數為「j」；「`xz`」，參數為「J」。
 
-而題目要求我們要將「manager」群組新增為「nasun」和「roger」的「次要群組」，指令如下：
+最後是「P」，其實這是因為「tar」預設的檔案名稱是以「相對路徑」表示，而上述指令是以「絕對路徑」表示；而「P」的意思就是指以「絕對路徑」表示檔名；若不加「P」，其實也仍成功打包並壓縮，只是會顯示以下的錯誤訊息：
 
-```shell
-# nasun & roger boths belongs to manager as a secondary group
-usermod -aG	manager nasun
-usermod -aG	manager roger
-```
+![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q13_tar_error.png?raw=true)
 
-###### 說明：在「`usermod`」指令的參數中，小寫的參數「g」代表修改使用者的「主要群組」，而大寫的參數「Ｇ」則是代表修改使用者的「次要群組」；此外，在「Linux」中，使用者可以同時屬於多個「次要群組」，因此，若是要「新增」次要群組，而非「修改」，可以使用參數「a」，其意思則是代表「新增」，通常搭配「Ｇ」使用，意即「新增次要群組」。
+完整操作截圖如下：
 
-操作截圖如下：
-
-![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q04_group_manager.png?raw=true)
-
-此外，題目還要求將「wayne」設置成「無法登入」，其意思也就是將該用戶，也就是「wayne」，加入「`/sbin/nologin`」檔案中，指令如下：
-
-```shell
-# wayne does not have access to an interactive shell on the system
-usermod -s "/sbin/nologin" wayne
-```
-
-###### 說明：在「`usermod`」中，參數「s」代表與實際檔案有關；而「`/sbin/nologin`」則是個實際檔案，當使用者被加入這個檔案中，就代表該使用者「無法登入」。
-
-操作截圖如下：
-
-![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q04_nologin.png?raw=true)
-
-#### Step 4. 設定使用者密碼
-
-逐一為使用者設定密碼，指令如下：
-
-```shell
-echo "redhat" | passwd --stdin nasun
-echo "redhat" | passwd --stdin roger
-echo "redhat" | passwd --stdin wayne
-```
-
-操作截圖如下：
-
-![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q04_ch_pwd.png?raw=true)
+![](https://github.com/rickbsr/Certification-RedHat-RHCSA/blob/main/pics/q13_tar_gz_archive.png?raw=true)
 
 ---
 
